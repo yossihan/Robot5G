@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+pipeline {
 node {
 	stage 'Checkout'
 		checkout scm
@@ -9,4 +11,5 @@ node {
 	stage 'Archive'
 		echo 'ProjectName/bin/Release/**'
 
+}
 }
