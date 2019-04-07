@@ -1,15 +1,24 @@
-#!/usr/bin/env groovy
 pipeline {
-node {
-	stage 'Checkout'
+    agent 'master'
+
+    stages {
+	    stage ('Checkout'){
 		checkout scm
-
-	stage 'Build'
-		echo 'nuget restore SolutionName.sln'
-		echo "\"${tool 'MSBuild'}\" SolutionName.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-
-	stage 'Archive'
-		echo 'ProjectName/bin/Release/**'
-
-}
+	    }
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
